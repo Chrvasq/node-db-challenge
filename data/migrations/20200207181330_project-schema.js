@@ -2,7 +2,10 @@ exports.up = function(knex) {
   return knex.schema
     .createTable("projects", project => {
       project.increments();
-      project.text("project_name").notNullable();
+      project
+        .text("project_name")
+        .notNullable()
+        .unique();
       project.text("description");
       project.boolean("completed");
     })
@@ -22,16 +25,11 @@ exports.up = function(knex) {
     })
     .createTable("resources", resource => {
       resource.increments();
-      resource.text("name").notNullable();
-      resource.text("description");
       resource
-        .integer("project_id")
-        .unsigned()
+        .text("name")
         .notNullable()
-        .references("id")
-        .inTable("projects")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+        .unique();
+      resource.text("description");
     });
 };
 
