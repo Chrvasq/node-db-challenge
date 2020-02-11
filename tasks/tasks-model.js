@@ -11,13 +11,23 @@ function find() {
       "t.completed",
       "p.project_name",
       "p.description as project_description"
-    );
+    )
+    .then(tasks => {
+      return tasks.map(task => ({
+        ...task,
+        completed: task.completed === 1 ? true : false
+      }));
+    });
 }
 
 function findById(id) {
   return db("tasks")
     .where({ id })
-    .first();
+    .first()
+    .then(task => ({
+      ...task,
+      completed: task.completed === 1 ? true : false
+    }));
 }
 
 function add(task) {
