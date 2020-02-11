@@ -7,13 +7,19 @@ exports.up = function(knex) {
         .notNullable()
         .unique();
       project.text("description");
-      project.boolean("completed");
+      project
+        .boolean("completed")
+        .notNullable()
+        .defaultTo(false);
     })
     .createTable("tasks", task => {
       task.increments();
       task.text("description").notNullable();
       task.text("notes");
-      task.boolean("completed");
+      task
+        .boolean("completed")
+        .notNullable()
+        .defaultTo(false);
       task
         .integer("project_id")
         .unsigned()

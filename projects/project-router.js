@@ -43,35 +43,25 @@ router.post("/:id/tasks", validateProjectId, validateTask, (req, res) => {
 
 function validateProject(req, res, next) {
   const { project_name } = req.body;
-  const completed = req.body.completed ? req.body.completed : "false";
 
   // check if body isn't empty
   Object.keys(req.body).length !== 0
     ? // check if project_name property exists
       !project_name
       ? res.status(400).json({ errorMessage: "Missing project name." })
-      : ((req.project = {
-          ...req.body,
-          completed: completed
-        }),
-        next())
+      : ((req.project = { ...req.body }), next())
     : res.status(400).json({ errorMessage: "Missing required data." });
 }
 
 function validateTask(req, res, next) {
   const { description } = req.body;
-  const completed = req.body.completed ? req.body.completed : "false";
 
   // check if body isn't empty
   Object.keys(req.body).length !== 0
     ? // check if description property exists
       !description
       ? res.status(400).json({ errorMessage: "Missing task description." })
-      : ((req.task = {
-          ...req.body,
-          completed: completed
-        }),
-        next())
+      : ((req.task = { ...req.body }), next())
     : res.status(400).json({ errorMessage: "Missing required data." });
 }
 
