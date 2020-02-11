@@ -24,10 +24,15 @@ function findById(id) {
   return db("tasks")
     .where({ id })
     .first()
-    .then(task => ({
-      ...task,
-      completed: task.completed === 1 ? true : false
-    }));
+    .then(task => {
+      if (task) {
+        return {
+          ...task,
+          completed: task.completed === 1 ? true : false
+        };
+      }
+      return null;
+    });
 }
 
 function add(task) {

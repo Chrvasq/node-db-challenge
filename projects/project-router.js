@@ -32,7 +32,7 @@ router.post("/:id/tasks", validateProjectId, validateTask, (req, res) => {
   const newTask = { ...task, project_id: project.id };
 
   Tasks.add(newTask)
-    .then(tsk => res.status(200).json({ ...tsk }))
+    .then(tsk => res.status(200).json(tsk))
     .catch(err => {
       console.log(err);
       res.status(500).json({ message: "Exception", err });

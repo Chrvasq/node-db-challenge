@@ -15,10 +15,15 @@ function findById(id) {
   return db("projects")
     .where({ id })
     .first()
-    .then(project => ({
-      ...project,
-      completed: project.completed === 1 ? true : false
-    }));
+    .then(project => {
+      if (project) {
+        return {
+          ...project,
+          completed: project.completed === 1 ? true : false
+        };
+      }
+      return null;
+    });
 }
 
 function add(project) {
