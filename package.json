@@ -1,0 +1,21 @@
+{
+  "name": "node-db-challenge",
+  "version": "1.0.0",
+  "description": "Node DB Sprint Challenge",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "repository": "https://github.com/Chrvasq/node-db-challenge.git",
+  "author": "Chris Vasquez <chrvasq@outlook.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.20.8",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
